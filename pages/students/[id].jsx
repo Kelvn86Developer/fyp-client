@@ -1,10 +1,18 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
 import Link from 'next/link'
+import VenuesContext from '../../context/venues/venuesContext';
 import { useRouter } from 'next/router';
+import DaysFilter from '../../components/DaysFilter';
 
 const Venue = ({venue, days}) => {
     const router = useRouter();
     const venueId = router.query.id;
+    const venueContext = useContext(VenuesContext);
+    const {getFreeVenueSessions, sessions} = venueContext;
+
+    useEffect(()=>{
+        getFreeVenueSessions(venueId);
+    }, [venueId]);
   return (
     <div className='venue'>
         <div className="nav-header mb-4 text-slate-400 text-md flex gap-1">
@@ -34,43 +42,22 @@ const Venue = ({venue, days}) => {
         <div className="calender relative flex flex-col w-[96%]">
             <div className="days-filter flex gap-8 mt-8">
                 {days.map((day)=>(
-                    <button type='button' className="day-filter first:text-main-400 text-slate-400 text-center text-2xl uppercase first:font-semibold first:underline first:underline-offset-8" key={day.id + day.date}> 
-                    <p>{day.name} {day.date}</p>
-                    </button>
+                    // <button type='button' className="day-filter first:text-main-400 text-slate-400 text-center text-2xl uppercase first:font-semibold first:underline first:underline-offset-8" key={day.id + day.date}> 
+                    // <p>{day.name} {day.date}</p>
+                    // </button>
+                    <DaysFilter day={day} key={day.id + day.name}/>
                 ))}
             </div>
 
             <div className="timetable bg-main-130 rounded-md py-3 px-4 w-[94%] mt-4 grid grid-cols-4 gap-4">
-                 <div className="room-timetable">
+                {sessions.length == 0? <h2>No free sessions available now</h2>:(sessions.map((session)=>(
+                    <div className="room-timetable" key={session.starts + session.venue}>
                     <p>Free</p>
                     <p>No lecture</p>
                     <p>No students</p>
-                    <p>07:00 - 09:00</p>
-                 </div>
-                 <div className="room-timetable">
-                    <p>Free</p>
-                    <p>No lecture</p>
-                    <p>No students</p>
-                    <p>07:00 - 09:00</p>
-                 </div>
-                 <div className="room-timetable">
-                    <p>Free</p>
-                    <p>No lecture</p>
-                    <p>No students</p>
-                    <p>07:00 - 09:00</p>
-                 </div>
-                 <div className="room-timetable">
-                    <p>Free</p>
-                    <p>No lecture</p>
-                    <p>No students</p>
-                    <p>07:00 - 09:00</p>
-                 </div>
-                 <div className="room-timetable">
-                    <p>Free</p>
-                    <p>No lecture</p>
-                    <p>No students</p>
-                    <p>07:00 - 09:00</p>
-                 </div>
+                    <p>{session.starts} - {session.ends}</p>
+                    </div>
+                )))}
             </div>
         </div>
     </div>

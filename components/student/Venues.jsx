@@ -23,28 +23,28 @@ Venues.defaultProps = {
         {
           id: 1,
           status: "free",
-          title: "100",
+          title: "300",
           time: "07:00 - 09:00 am",
           seats: "120"
         },
         {
           id: 2,
           status: "free",
-          title: "120",
+          title: "320",
           time: "07:00 - 09:00 am",
           seats: "120"
         },
         {
           id: 3,
           status: "free",
-          title: "110",
+          title: "310",
           time: "08:00 - 09:00 am",
           seats: "120"
         },
         {
           id: 4,
           status: "free",
-          title: "119",
+          title: "319",
           time: "09:00 - 10:00 am",
           seats: "120"
         },

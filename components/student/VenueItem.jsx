@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const VenueItem = ({ venue }) => {
@@ -8,8 +9,8 @@ const VenueItem = ({ venue }) => {
                 <p>status: </p>
                 <p>{venue.status}</p>
             </div>
-            <div className="class-id px-4">
-                <p>class title: {venue.title}</p>
+            <div className="class-id pl-4">
+                <Link href={`/students/${venue.title}`} ><p className='underline'>class title: {venue.title}</p></Link>
             </div>
 
             <div className="time px-4">
