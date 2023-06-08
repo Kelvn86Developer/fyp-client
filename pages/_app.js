@@ -1,24 +1,35 @@
 import Container from "../components/layout/Container";
-import Navbar from "../components/layout/Navbar";
 import SideNav from "../components/layout/SideNav";
 import StudentState from "../context/student/StudentState";
-import VenuesState from "../context/venues/VenuesState"
+import LecturerState from "../context/lecturer/LecturerState";
+import VenuesState from "../context/venues/VenuesState";
+import GroupState from "../context/timetable/group/GroupState";
 import "../styles/globals.css";
+import ExamState from "../context/timetable/exam/ExamState";
+import AuthState from "../context/auth/AuthState";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <StudentState>
-      <VenuesState>
-        <div className="app flex w-[100%]">
-          <div className="justify-start relative w-[24%] bg-main-400">
-            <SideNav />
-          </div>
-          <Container>
-            <Component {...pageProps} />
-          </Container>
-        </div>
-      </VenuesState>
-    </StudentState>
+    <AuthState>
+      <StudentState>
+        <LecturerState>
+        <GroupState>
+          <ExamState>
+            <VenuesState>
+              <div className="app flex w-[100%]">
+                <div className="justify-start relative w-[24%] bg-main-400">
+                  <SideNav type="lecturer"/>
+                </div>
+                <Container>
+                  <Component {...pageProps} />
+                </Container>
+              </div>
+            </VenuesState>
+          </ExamState>
+        </GroupState>
+        </LecturerState>
+      </StudentState>
+    </AuthState>
   );
 }
 

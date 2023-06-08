@@ -2,18 +2,21 @@ import React, {useEffect,useContext} from 'react'
 import PropTypes from 'prop-types'
 import Search from '../../components/student/Search'
 import Filters from '../../components/student/Filters'
-import StudentContext from '../../context/student/studentContext';
 import VenuesContext from '../../context/venues/venuesContext';
 import Venues from '../../components/student/Venues'
+import Loader from '../../components/Loader';
 
 const index = (props) => {
-  const studentContext = useContext(StudentContext);
   const venuesContext = useContext(VenuesContext);
-  const {getFreeVenues,venues, filterVenues, searchVenues, filtered} = venuesContext;
+  const {getFreeVenues,venues,  filtered} = venuesContext;
 useEffect(() => {
+  console.log('use effect is running');
   getFreeVenues();
-}, [venues]);
+}, []);
   const { floor } = props
+  if(venues.length <= 0 && filtered.length <= 0){
+    return <Loader/>
+  }
   return (
     <div>
       <Search />

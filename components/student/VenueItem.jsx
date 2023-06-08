@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 const VenueItem = ({ venue }) => {
+
     return (
         <>
             <div className="status relative bg-inherit flex items-end mb-4 space-x-1 pb-2 px-4 pt-10">

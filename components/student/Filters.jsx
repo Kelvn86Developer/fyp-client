@@ -7,7 +7,6 @@ const Filters = ({ranges}) => {
     const venuesContext = useContext(VenuesContext);
     const {filterVenues} = venuesContext;
     const onFilter = (e)=> {
-        
         let value = e.target.getAttribute('data');
         const dataType = typeof value; // Get the data type of the value
         console.log(dataType);

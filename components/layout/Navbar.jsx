@@ -4,7 +4,7 @@ import PropTypes  from 'prop-types'
 const Navbar = ({link, notification, reminder}) => {
   return (
     <div className='sticky z-10 top-0 left-0 w-full px-8 py-4 flex justify-between shadow-sm bg-white'>
-         <div className="left">
+         <div className="left bg-main-130 py-1 px-2 w-[20%]">
           <p>{link}</p>
          </div>
          <div className="right flex justify-between w-[8%] text-main-400">

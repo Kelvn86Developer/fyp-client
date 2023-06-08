@@ -9,11 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.13.3",
     "axios": "^1.4.0",
     "bcryptjs": "^2.4.3",
+    "bootstrap-icons": "^1.10.5",
+    "moment": "^2.29.4",
     "next": "13.3.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.9.0",
     "sass": "^1.62.1",
     "sass-loader": "^13.2.2",
     "swr": "^2.1.5"
