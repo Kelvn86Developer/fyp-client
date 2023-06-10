@@ -17,7 +17,9 @@ const SessionItem = ({ session }) => {
             <div className="time pl-4">
                 <p>{session.starts} - {session.ends}</p>
             </div>
-
+            {session.facilitator && <div className="time pl-4">
+                <p>{session.facilitator}</p>
+            </div>}
             <div className="seats mt-4 pl-4">
                 <p>Seats: {session.seats}</p>
             </div>

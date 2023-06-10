@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
         <LecturerState>
           <VenuesState>
             <div className="app flex w-[100%]">
-              <div className="justify-start relative w-[24%] bg-main-400">
+              <div className="justify-start w-[24%] bg-main-400 fixed">
                 <SideNav type="lecturer" />
               </div>
               <Container>

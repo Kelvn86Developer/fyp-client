@@ -63,7 +63,7 @@ const SideNav = ({ title, type }) => {
   }
   else if(type == "lecturer") {
     return (
-      <div className="side-bar sticky left-0 top-0 w-full h-[100vh] flex flex-col px-8 py-4 align-center">
+      <div className="side-bar sticky left-0 top-0 w-full h-[120vh] flex flex-col px-8 py-4 align-center">
         <div className="logo mb-20 mt-8 w-full flex space-x-4 items-center">
           <div className="img-logo w-[20%] relative">
             <span className="py-3 px-6 rounded-full bg-sky-900"></span>
@@ -87,7 +87,7 @@ const SideNav = ({ title, type }) => {
           <div className={`link flex text-white ${isActiveLink('/lecturer/request')} border-main-900 border-[1px] items-center justify-center px-1 py-2 space-x-4`}>
             <i className="bi bi-table w-[10%]"></i>
             <div className="w-[60%]">
-              <Link href="/lecturer/request">Venues sessions</Link>
+              <Link href="/lecturer/requestvenues">Venues sessions</Link>
             </div>
           </div>
           <div className={`link flex text-white ${isActiveLink('/lecturer/notifications')} border-main-900 border-[1px] items-center justify-center px-1 py-2 space-x-4`}>

@@ -6,9 +6,9 @@ const Container = (props) => {
   const router = useRouter();
   let link = router.pathname;
   return (
-    <div className='w-[80%] relative justify-end'>
+    <div className='relative w-[80%] justify-end ml-[24%]'>
       <Navbar link={link}/>
-      <div className="page-wrapper ml-6 mt-[1%] relative h-[1000px] w-[96%]">
+      <div className="page-wrapper ml-6 mt-[8%] relative min-h-screen w-[96%]">
         {props.children}
       </div>
     </div>
