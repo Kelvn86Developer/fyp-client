@@ -12,9 +12,15 @@ import {
   SET_LOADING,
   SET_ACTIVE_DAY,
   SCHEDULE_FREEING_VENUE,
+  SET_SHOW_MODEL,
 } from "../types";
 export default (state, action) => {
   switch (action.type) {
+    case SET_SHOW_MODEL:
+      return {
+        ...state,
+        showModel: true,
+      };
     case SET_LOADING:
       return {
         ...state,
@@ -71,29 +77,21 @@ export default (state, action) => {
 
         }; 
     case SCHEDULE_FREEING_VENUE:
-        return {
+      const updatedVenues = state.venues.map((venue) => {
+        if (venue.title === action.payload.venue.title && venue.status === "Occupied" && venue.ends === action.payload.venue.ends) {
+          console.log('venue is updated')
+          return { ...venue, status: "Free" };
+        }
+        return venue;
+      });
+
+       return{
             ...state,
-            venues: [...state.venues, state.venues.map((venue)=> {
-              if(venue.title === action.payload.venue.title && venue.day === action.payload.day && venue.status === "Occupied") {
-                const timeToFree = new Date(venue.ends);
-                if (action.payload.currentTime >= timeToFree) {
-                  venue.status = "Free";
-                }
-              }
-              return venue
-          })
-          ],
-          occupiedVenues: [...state.occupiedVenues, state.occupiedVenues.map((venue)=> {
-            if(venue.title === action.payload.venue.title && venue.day === action.payload.day && venue.status === "Occupied") {
-              const timeToFree = new Date(venue.ends);
-              if (action.payload.currentTime >= timeToFree) {
-                venue.status = "Free";
-              }
-            }
-            return venue
-          })
-          ],
-        };
+            venues: updatedVenues,
+            occupiedVenues: state.occupiedVenues.filter((venue)=> venue.title !== action.payload.venue.title),
+            lecturerFreeVenues: [...state.lecturerFreeVenues, action.payload.venue],
+          
+       };
     case GET_FREE_VENUE_SESSIONS:
       return {
         ...state,

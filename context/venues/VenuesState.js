@@ -15,6 +15,7 @@ import {
   SET_LOADING,
   SET_ACTIVE_DAY,
   SCHEDULE_FREEING_VENUE,
+  SET_SHOW_MODEL,
 } from "../types";
 
 const VenuesState = (props) => {
@@ -85,7 +86,7 @@ const VenuesState = (props) => {
         floor: "2",
         day: "Thursday",
         starts: "09:00 am",
-        ends: "10:00 am",
+        ends: "05:03 pm",
 
       },
       {
@@ -112,7 +113,7 @@ const VenuesState = (props) => {
         floor: "3",
         day: "Thursday",
         starts: "11:00 am",
-        ends: "01:00 pm",
+        ends: "07:10 pm",
       },
       {
         id: 8,
@@ -167,10 +168,14 @@ const VenuesState = (props) => {
     activeDay: "Monday",
     loading: true,
     loaded:false,
+    showModel:false,
   };
 
   const [state, dispatch] = useReducer(venuesReducer, initialState);
 
+  const setShowModel = ()=> {
+    dispatch({type: SET_SHOW_MODEL});
+  }
   const setActiveDay = (day) => {
     dispatch({ type: SET_ACTIVE_DAY, payload: day });
   };
@@ -216,15 +221,11 @@ const VenuesState = (props) => {
   }
 
   // SCHEDULE FREEING OF VENUES
-  const scheduleFreeingVenues = (venue, day)=> {
-    const interval = 3000;
-    const intervalUsed = setInterval(() => {
-      const currentTime = new Date();
-      currentHours = currentTime.getHours();
-        dispatch({type: SCHEDULE_FREEING_VENUE, payload: {venue, day, currentTime}});
-    }, interval);
-
-    return intervalUsed; 
+  const scheduleFreeingVenues = (venue, timeout)=> {
+    console.log(timeout);
+     setTimeout(()=>{
+        dispatch({type: SCHEDULE_FREEING_VENUE, payload: {venue}});
+     }, timeout);
   }
 
   return (
@@ -239,9 +240,11 @@ const VenuesState = (props) => {
         loaded: state.loaded,
         activeDay: state.activeDay,
         occupiedVenues: state.occupiedVenues,
+        showModel: state.showModel,
         lecturerFreeVenues: state.lecturerFreeVenues,
         scheduleFreeingVenues,
         setActiveDay,
+        setShowModel,
         getFreeVenues,
         filterVenues,
         searchVenues,

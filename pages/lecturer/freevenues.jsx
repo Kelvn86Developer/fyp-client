@@ -1,22 +1,24 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DaysFilter from '../../components/lecturer/DaysFilter'
 import VenueItem from '../../components/lecturer/VenueItem'
 import LecturerContext from '../../context/lecturer/lecturerContext';
 import VenuesContext from '../../context/venues/venuesContext';
 import Loader from '../../components/Loader';
 import Alert from '../../components/Alert';
+import OccupyModel from '../../components/lecturer/occupyModel';
 
 const Free = ({ days, freeVenues }) => {
   const lecturerContext = useContext(LecturerContext);
   const venuesContext = useContext(VenuesContext);
   const { sessionActiveDay, venues } = lecturerContext;
-  const { setLecturerFreeVenues, lecturerFreeVenues, loaded } = venuesContext;
+  const { setLecturerFreeVenues, lecturerFreeVenues, loaded, showModel } = venuesContext;
 
   useEffect(() => {
     setLecturerFreeVenues(sessionActiveDay, "lecturer");
   }, [sessionActiveDay, venues]);
   return (
     <div>
+       {showModel && <OccupyModel/>}
       <div className="page-title text-xl text-main-400 font-medium mb-4">
         <h2>Free venues</h2>
       </div>
@@ -40,6 +42,8 @@ const Free = ({ days, freeVenues }) => {
 
 
       </div>
+
+     
     </div>
   )
 }

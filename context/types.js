@@ -5,6 +5,7 @@ export const SET_ACTIVE_FILTER = "SET_ACTIVE_FILTER";
 export const DAYS_FILTER = "DAYS_FILTER";
 export const SET_LOADING = "SET_LOADING";
 export const SET_REMINDER = "SET_REMINDER";
+export const SET_SHOW_MODEL = "SET_SHOW_MODEL";
 
 export const GET_ROOM = "GET_ROOM";
 export const GET_ROOMS = "GET_ROOMS";

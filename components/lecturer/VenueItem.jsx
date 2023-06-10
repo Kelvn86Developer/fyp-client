@@ -1,8 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import VenuesContext from '../../context/venues/venuesContext';
 import LecturerContext from '../../context/lecturer/lecturerContext';
+import OccupyModel from './occupyModel';
 
-const VenueItem = ({ venue }) => {
+
+const VenueItem = ({ venue, lecturer }) => {
     const dayNameIndex = {
         Monday: 1,
         Tuesday: 2,
@@ -12,17 +14,24 @@ const VenueItem = ({ venue }) => {
 
     }
 
+    // get current date in format of dd mm yyyy
+    // const currentDate = new Date().toLocaleDateString('en-GB', {
+    //     day: 'numeric',
+    //     month: 'short',
+    //     year: 'numeric'
+    // }).split(' ').join('-');
 
     const venuesContext = useContext(VenuesContext);
     const lecturerContext = useContext(LecturerContext);
-    const { occupyFreeVenue, activeDay } = venuesContext;
+    const { occupyFreeVenue, activeDay, scheduleFreeingVenues, setShowModel } = venuesContext;
     const { sessionActiveDay } = lecturerContext;
 
     const onClick = () => {
         let weekdayIndex = dayNameIndex[sessionActiveDay];
         const currentTime = new Date();
-        const currentMonth = currentTime.getMonth() + 1;
+        const currentMonth = currentTime.getMonth();
         const currentYear = currentTime.getFullYear();
+        let currentHours = currentTime.getTime();
 
         const [timeStr, period] = venue.ends.split(" ");
         const [hoursStr, minutesStr] = timeStr.split(":");
@@ -42,8 +51,11 @@ const VenueItem = ({ venue }) => {
         timeToFree.setHours(hours);
         timeToFree.setMinutes(minutes);
         timeToFree.setSeconds(0);
-        console.log(timeToFree);
-        occupyFreeVenue(venue, sessionActiveDay);
+        let timeout = timeToFree.getTime();
+        let timeDiff = timeout - currentHours;
+        // scheduleFreeingVenues(venue, timeDiff);
+        // occupyFreeVenue(venue, sessionActiveDay);
+        setShowModel(true);
     };
     return (
         <>
@@ -69,6 +81,14 @@ const VenueItem = ({ venue }) => {
             </div>
         </>
     )
+}
+
+VenueItem.defaultProps = {
+    lecturer: {
+        id: "12ByH",
+        username: "DR Kwesigabo",
+
+    }
 }
 
 export default VenueItem
