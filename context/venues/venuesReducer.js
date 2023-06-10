@@ -13,14 +13,30 @@ import {
   SET_ACTIVE_DAY,
   SCHEDULE_FREEING_VENUE,
   SET_SHOW_MODEL,
+  SET_SELECTED_VENUE
 } from "../types";
 export default (state, action) => {
   switch (action.type) {
     case SET_SHOW_MODEL:
+      if(action.payload === "open"){
+        return {
+          ...state,
+          showModel: true,
+        };
+      }else{
+        return {
+          ...state,
+          showModel: false,
+        };
+      };
+    case SET_SELECTED_VENUE:
       return {
         ...state,
-        showModel: true,
+        loading:true,
+        selectedVenue: action.payload.venue,
+        loading: false,
       };
+
     case SET_LOADING:
       return {
         ...state,

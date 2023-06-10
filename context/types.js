@@ -1,4 +1,5 @@
 export const SET_CURRENT = "SET_CURRENT";
+export const SET_SELECTED_VENUE = "SET_SELECTED_VENUE";
 export const SET_ERRORS = "SET_ERRORS";
 export const SET_ACTIVE_DAY = "SET_ACTIVE_DAY";
 export const SET_ACTIVE_FILTER = "SET_ACTIVE_FILTER";

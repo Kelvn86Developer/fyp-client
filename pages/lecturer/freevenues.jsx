@@ -5,9 +5,14 @@ import LecturerContext from '../../context/lecturer/lecturerContext';
 import VenuesContext from '../../context/venues/venuesContext';
 import Loader from '../../components/Loader';
 import Alert from '../../components/Alert';
-import OccupyModel from '../../components/lecturer/occupyModel';
+import OccupyModel from '../../components/lecturer/OccupyModel';
 
 const Free = ({ days, freeVenues }) => {
+    const currentDate = new Date().toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    }).split(' ').join('-');
   const lecturerContext = useContext(LecturerContext);
   const venuesContext = useContext(VenuesContext);
   const { sessionActiveDay, venues } = lecturerContext;
@@ -18,7 +23,7 @@ const Free = ({ days, freeVenues }) => {
   }, [sessionActiveDay, venues]);
   return (
     <div>
-       {showModel && <OccupyModel/>}
+       {showModel && <OccupyModel date={currentDate}/>}
       <div className="page-title text-xl text-main-400 font-medium mb-4">
         <h2>Free venues</h2>
       </div>

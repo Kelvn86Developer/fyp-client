@@ -16,6 +16,7 @@ import {
   SET_ACTIVE_DAY,
   SCHEDULE_FREEING_VENUE,
   SET_SHOW_MODEL,
+  SET_SELECTED_VENUE,
 } from "../types";
 
 const VenuesState = (props) => {
@@ -165,6 +166,7 @@ const VenuesState = (props) => {
     lecturerFreeVenues:null,
     filtered: [],
     occupiedVenues: [], 
+    selectedVenue:[],
     activeDay: "Monday",
     loading: true,
     loaded:false,
@@ -173,8 +175,11 @@ const VenuesState = (props) => {
 
   const [state, dispatch] = useReducer(venuesReducer, initialState);
 
-  const setShowModel = ()=> {
-    dispatch({type: SET_SHOW_MODEL});
+  const setSelectedVenue = (venue)=> {
+    dispatch({type: SET_SELECTED_VENUE, payload: {venue}});
+  }
+  const setShowModel = (action="open")=> {
+    dispatch({type: SET_SHOW_MODEL, payload: action});
   }
   const setActiveDay = (day) => {
     dispatch({ type: SET_ACTIVE_DAY, payload: day });
@@ -242,6 +247,7 @@ const VenuesState = (props) => {
         occupiedVenues: state.occupiedVenues,
         showModel: state.showModel,
         lecturerFreeVenues: state.lecturerFreeVenues,
+        selectedVenue: state.selectedVenue,
         scheduleFreeingVenues,
         setActiveDay,
         setShowModel,
@@ -252,7 +258,8 @@ const VenuesState = (props) => {
         setCurrent,
         getSimilarVenues,
         setLecturerFreeVenues,
-        occupyFreeVenue
+        occupyFreeVenue,
+        setSelectedVenue
       }}
     >
       {props.children}

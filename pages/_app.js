@@ -9,28 +9,48 @@ import ExamState from "../context/timetable/exam/ExamState";
 import AuthState from "../context/auth/AuthState";
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <AuthState>
-      <StudentState>
+  const type = "lecturer";
+  if (type === "lecturer") {
+    return (
+      <AuthState>
         <LecturerState>
-        <GroupState>
-          <ExamState>
-            <VenuesState>
-              <div className="app flex w-[100%]">
-                <div className="justify-start relative w-[24%] bg-main-400">
-                  <SideNav type="lecturer"/>
-                </div>
-                <Container>
-                  <Component {...pageProps} />
-                </Container>
+          <VenuesState>
+            <div className="app flex w-[100%]">
+              <div className="justify-start relative w-[24%] bg-main-400">
+                <SideNav type="lecturer" />
               </div>
-            </VenuesState>
-          </ExamState>
-        </GroupState>
+              <Container>
+                <Component {...pageProps} />
+              </Container>
+            </div>
+          </VenuesState>
         </LecturerState>
-      </StudentState>
-    </AuthState>
-  );
+      </AuthState>
+    );
+  } else if (type === "student") {
+    return (
+      <AuthState>
+        <StudentState>
+          <GroupState>
+            <ExamState>
+              <VenuesState>
+                <div className="app flex w-[100%]">
+                  <div className="justify-start relative w-[24%] bg-main-400">
+                    <SideNav type="lecturer" />
+                  </div>
+                  <Container>
+                    <Component {...pageProps} />
+                  </Container>
+                </div>
+              </VenuesState>
+            </ExamState>
+          </GroupState>
+        </StudentState>
+      </AuthState>
+    );
+  } else {
+    return <Component {...pageProps} />;
+  }
 }
 
 export default MyApp;

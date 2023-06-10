@@ -6,13 +6,15 @@ const DaysFilter = ({ day, type }) => {
     const lecturerContext = useContext(LecturerContext);
     const { setActiveFilter, sessionActiveDay } = lecturerContext;
     useEffect(() => {
-        // get the current day name then set it as the active filter
         const date = new Date();
         const currentDay = date.toLocaleString('en-us', { weekday: 'long' });
-        if(currentDay === "Sunday" || currentDay === "Saturday"){
+        if(currentDay == "Sunday" || currentDay == "Saturday"){
             setActiveFilter("Monday");
+            console.log("its monday");
+        }else{
+            setActiveFilter(currentDay);
         }
-        setActiveFilter(currentDay);
+        
     }, [])
     const onClick = () => {
         setActiveFilter(day.name);
