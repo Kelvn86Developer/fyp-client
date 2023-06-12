@@ -8,12 +8,18 @@ const DaysFilter = ({ day, type }) => {
     useEffect(() => {
         const date = new Date();
         const currentDay = date.toLocaleString('en-us', { weekday: 'long' });
-        if(currentDay == "Sunday" || currentDay == "Saturday"){
-            setActiveFilter("Monday");
-            console.log("its monday");
-        }else{
+        if(type !== 'exams'){
+            if(currentDay == "Sunday" || currentDay == "Saturday"){
+                setActiveFilter("Monday");
+                console.log("its monday");
+            }else{
+                setActiveFilter(currentDay);
+            }
+        }
+        else{
             setActiveFilter(currentDay);
         }
+       
         
     }, [])
     const onClick = () => {

@@ -90,6 +90,12 @@ const SideNav = ({ title, type }) => {
               <Link href="/lecturer/requestvenues">Venues sessions</Link>
             </div>
           </div>
+          <div className={`link flex text-white ${isActiveLink('/lecturer/request')} border-main-900 border-[1px] items-center justify-center px-1 py-2 space-x-4`}>
+            <i className="bi bi-table w-[10%]"></i>
+            <div className="w-[60%]">
+              <Link href="/lecturer/examtimetable">Exam timetable</Link>
+            </div>
+          </div>
           <div className={`link flex text-white ${isActiveLink('/lecturer/notifications')} border-main-900 border-[1px] items-center justify-center px-1 py-2 space-x-4`}>
             <i className="bi bi-bell-fill w-[10%]"></i>
             <div className="w-[60%]">

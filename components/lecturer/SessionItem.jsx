@@ -24,9 +24,11 @@ const SessionItem = ({ session }) => {
             <div className="seats mt-4 pl-4">
                 <p>Seats: {session.seats}</p>
             </div>
-            <div className="request-btn relative bg-inherit w-[50%] ml-4 py-2 text-center text-gray-900 rounded shadow  hover:shadow-md">
-                <Link href={`/lecturer/requestvenues/${session.venue}`} className=' bg-transparent w-full '>Start Requesting</Link>
-            </div>
+            {
+                session.facilitator && <div className="request-btn relative bg-inherit w-[50%] ml-4 py-2 text-center text-gray-900 rounded shadow  hover:shadow-md">
+                    <Link href={`/lecturer/requestvenues/${session.venue}`} className=' bg-transparent w-full '>Start Requesting</Link>
+                </div>
+            }
         </>
     )
 }

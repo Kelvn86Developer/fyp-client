@@ -36,7 +36,7 @@ const Index = ({days}) => {
         </div>
   
         <div className="header-home mt-8 w-[50%] text-gray-900 text-2xl font-medium">
-          <h2>My timetable</h2>
+          <h2>Group timetable</h2>
         </div>
   
         <div className="classrooms-sessions mt-2 w-full">

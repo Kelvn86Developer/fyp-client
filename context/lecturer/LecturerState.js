@@ -4,6 +4,7 @@ import {
   GET_OLDEST_NOTIFICATIONS,
   SET_CURRENT,
   SET_ACTIVE_DAY,
+  GET_EXAMS,
 } from "../types";
 import LecturerContext from "./lecturerContext";
 import lecturerReducer from "./lecturerReducer";
@@ -101,6 +102,30 @@ const LecturerState = (props) => {
         day: "Tuesday",
       },
     ],
+    exams:[
+        {
+            id: "1ArVu",
+            module: "Social Networking",
+            course: "BIT",
+            venue: "200",
+            starts: "07:00 am",
+            ends: "10:00 am",
+            code: "ITU 08112",
+            day: "Monday",
+
+        },
+        {
+            id: "2BgVu",
+            module: "Fundamentals of blockchain",
+            course: "BIT",
+            venue: "TH_B",
+            starts: "07:00 am",
+            ends: "10:00 am",
+            code: "ITU 08112",
+            day: "Sunday",      
+
+        }
+    ],
     lastNotification:null,
     currentSessions: null,
     totalNotifications: "",
@@ -117,6 +142,10 @@ const LecturerState = (props) => {
 
   // get notifications
   // set current sessions
+  // get exams
+  const getExams = ()=> {
+    dispatch({type:GET_EXAMS});
+  }
   const setCurrentSessions = (day)=> {
     dispatch({type:SET_CURRENT, payload:day});
   }
@@ -135,9 +164,11 @@ const LecturerState = (props) => {
     Loading: state.Loading,
     totalNotifications: state.totalNotifications,
     error: state.error,
+    exams: state.exams,
     setActiveFilter,
     setCurrentSessions,
-    setRecentNotifications
+    setRecentNotifications,
+    getExams
 
   }}>
     {props.children}
