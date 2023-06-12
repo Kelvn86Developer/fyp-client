@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 const SessionItem = ({ session }) => {
     return (
@@ -8,20 +9,23 @@ const SessionItem = ({ session }) => {
                 <p>{session.module}</p>
             </div>
             <div className="class-id pl-4 flex justify-between w-[80%]">
-                <span>{session.course}</span>
+                <span>Course: {session.course}</span>
                 <span>room: {session.venue}</span>
             </div>
             <div className="status pl-4">
-                <span>{session.status}</span>
+                <span>Status: {session.status}</span>
             </div>
             <div className="time pl-4">
-                <p>{session.starts} - {session.ends}</p>
+                <p>Time: {session.starts} - {session.ends}</p>
             </div>
             {session.facilitator && <div className="time pl-4">
-                <p>{session.facilitator}</p>
+                <p>Facilitator:{session.facilitator}</p>
             </div>}
             <div className="seats mt-4 pl-4">
                 <p>Seats: {session.seats}</p>
+            </div>
+            <div className="request-btn relative bg-inherit w-[50%] ml-4 py-2 text-center text-gray-900 rounded shadow  hover:shadow-md">
+                <Link href={`/lecturer/requestvenues/${session.venue}`} className=' bg-transparent w-full '>Start Requesting</Link>
             </div>
         </>
     )

@@ -1,8 +1,8 @@
 import React from 'react'
-import DaysFilter from '../../components/lecturer/DaysFilter'
-import VenueItem from '../../components/lecturer/VenueItem';
-import SessionItem from '../../components/lecturer/SessionItem';
-import Sessions from '../../components/lecturer/Sessions';
+import DaysFilter from '../../../components/lecturer/DaysFilter'
+import VenueItem from '../../../components/lecturer/VenueItem';
+import SessionItem from '../../../components/lecturer/SessionItem';
+import Sessions from '../../../components/lecturer/Sessions';
 
 
 const requestClassroom = ({days, sessions}) => {
